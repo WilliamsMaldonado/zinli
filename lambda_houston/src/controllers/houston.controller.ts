@@ -9,11 +9,13 @@ export class HoustonController {
 
     constructor(
         @inject(SERVICES.HoustonServiceS3) private serviceS3: HoustonService,
-        @inject(SERVICES.HoustonServiceSSM) private serviceSSM: HoustonService
+        @inject(SERVICES.HoustonServiceSSM) private serviceSSM: HoustonService,
+        @inject(SERVICES.HoustonServiceDynamo) private serviceDynamo: HoustonService,
         ) {
             this.serviceMap = new Map<string, HoustonService>([
                 [serviceS3.getType(), serviceS3],
-                [serviceSSM.getType(), serviceSSM]
+                [serviceSSM.getType(), serviceSSM],
+                [serviceDynamo.getType(), serviceDynamo]
             ]);
         }
 
