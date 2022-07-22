@@ -1,0 +1,27 @@
+{
+  "name": "zinli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliamsMaldonado/zinli.git"
+  },
+  "author": "Williams Maldonado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WilliamsMaldonado/zinli/issues"
+  },
+  "homepage": "https://github.com/WilliamsMaldonado/zinli#readme",
+  "devDependencies": {
+    "subpackage": "^1.1.0"
+  },
+  "subPackages": [
+    "lambda_houston",
+    "lambda_backup",
+    "lambda_mutual"
+  ]
+}
