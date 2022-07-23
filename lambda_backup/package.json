@@ -4,12 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rm -rf dist/",
+    "build": "tsc -p tsconfig.json && npm run copy-pck-file && npm run zip",
+    "copy-pck-file": "cp package.json dist/ && cd dist && npm i --production ",
+    "zip": "cd dist/ && bestzip  ../backup.zip *",
+    "postbuild": "mv backup.zip dist/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:fix": "tslint -c tslint.json 'src/**/*.ts' --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "aws-sdk": "^2.1181.0",
+    "bestzip": "^2.2.1",
     "tslint": "^6.1.3",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13"
   }
 }
