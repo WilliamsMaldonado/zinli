@@ -17,10 +17,10 @@ export class BackupController {
             this.backupService.saveRecords(event).then((res: string) => {
                 const response: Response = new Response({mensage: res});
                 this.kinesisService.saveRecordLambda(JSON.stringify(event), JSON.stringify(response));
-                resolve(response);
+                return resolve(response);
             }).catch(err => {
                 this.kinesisService.saveRecordLambda(JSON.stringify(event), JSON.stringify(err));
-                reject(err);
+                return reject(err);
             })
         })
     }

@@ -16,14 +16,14 @@ export class HoustonImplSSMService implements HoustonService {
             const params = {Name: '/rules/rules', WithDecryption: false}
             ssm.getParameter(params, (err, data) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 } else {
                     if (data.Parameter === undefined || data.Parameter.Value === undefined) {
-                        reject("ERROR JSON FROM SSM");
+                        return reject("ERROR JSON FROM SSM");
                     }
                     const bodyRes:body = JSON.parse(data.Parameter !== undefined ? data.Parameter.Value !== undefined ? data.Parameter.Value : "" : "");
                     const response:Response = new Response(bodyRes);
-                    resolve(response);
+                    return resolve(response);
                 }
             })
         });

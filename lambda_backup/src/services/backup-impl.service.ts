@@ -15,9 +15,9 @@ export class BackupServiceImpl implements BackupService {
             const params = {Body: JSON.stringify(records), Bucket: 'analytics', Key: s3suffix}
             s3.putObject(params, (err, data) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 } else {
-                    resolve(`Successfully processed ${event.records}`)
+                    return resolve(`Successfully processed ${event.records}`)
                 }
             });
         })

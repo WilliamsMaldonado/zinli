@@ -16,14 +16,14 @@ export class HoustonImplDyanamoService implements HoustonService {
             const params:DynamoDB.DocumentClient.GetItemInput = {TableName: 'rules', Key: {id: 'rules'}};
             dynamo.get(params, (err , data) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 } else {
                     if (data.Item === undefined) {
-                        reject("ERROR JSON FROM S3");
+                        return reject("ERROR JSON FROM S3");
                     }
                     const bodyRes:body = JSON.parse(data.Item !== undefined ? String(data.Item) : "");
                     const response:Response = new Response(bodyRes);
-                    resolve(response);
+                    return resolve(response);
                 }
             })
 

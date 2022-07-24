@@ -26,7 +26,7 @@ export class HoustonController {
                 return resolve(res);
             }).catch(err => {
                 console.error("ERROR: ", err);
-                reject(err);
+                return reject(err);
             });
         })
     }
