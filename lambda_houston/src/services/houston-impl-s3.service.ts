@@ -16,14 +16,14 @@ export class HoustonImplS3Service implements HoustonService {
             const params = {Bucket: 'rules', Key: 'rules.json', ResponseContentType: 'application/json'};
             s3.getObject(params, (err , data) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 } else {
                     if (data.Body === undefined) {
-                        reject("ERROR JSON FROM S3");
+                        return reject(new Error("ERROR JSON FROM S3"));
                     }
                     const bodyRes:body = JSON.parse(data.Body !== undefined ? data.Body.toString('utf-8') : "");
                     const response:Response = new Response(bodyRes);
-                    resolve(response);
+                    return resolve(response);
                 }
             })
 

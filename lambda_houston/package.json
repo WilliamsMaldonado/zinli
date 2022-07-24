@@ -9,21 +9,38 @@
     "copy-pck-file": "cp package.json dist/ && cd dist && npm i --production ",
     "zip": "cd dist/ && bestzip  ../houston.zip *",
     "postbuild": "mv houston.zip dist/",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json",
+    "coverage": "nyc -r lcov -r text -e .ts -x \"test/**/*.spec.ts\" npm run test",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts' --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^18.0.6",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@types/jasmine": "^4.0.3",
     "aws-sdk": "^2.1181.0",
+    "aws-sdk-mock": "^5.7.0",
     "bestzip": "^2.2.1",
+    "jasmine": "^4.3.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.1",
     "tslint": "^6.1.3",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "inversify": "^6.0.1",
     "reflect-metadata": "^0.1.13"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "check-coverage": true,
+    "include": [
+      "src/**/**.ts"
+    ],
+    "exclude": [
+      "inversify.config.ts"
+    ]
   }
 }
